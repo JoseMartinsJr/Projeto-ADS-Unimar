@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <!-- Metadados -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Título da página -->
+    <title>Cadastro de Funcionários</title>
+
+    <!-- Estilos CSS -->
+    <style>
+        /* Reset de margens e padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Corpo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        /* Container principal */
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Títulos */
+        #titulo {
+            font-size: 32px;
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        #subtitulo {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Campos do formulário */
+        .campo {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .campo input,
+        .campo textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Botão do formulário */
+        .botao {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            width: 100%;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .botao:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Cabeçalho com título e subtítulo -->
+        <h1 id="titulo">Cadastro de Funcionários</h1>
+        <p id="subtitulo">Complete os campos com seus dados do trabalho</p>
+
+        <!-- Formulário -->
+        <form method="POST" action="cadastra_dev.php">
+            <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" id="nome" required>
+            </div>
+
+            <div class="campo">
+                <label for="sobrenome">Sobrenome</label>
+                <input type="text" name="sobrenome" id="sobrenome" required>
+            </div>
+
+            <div class="campo">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="campo">
+                <label>Qual setor você está registrado?</label>
+                <label>
+                    <input type="radio" name="setor" value="atendimento" checked> Atendimento
+                </label>
+                <label>
+                    <input type="radio" name="setor" value="desenvolvimento"> Desenvolvimento
+                </label>
+                <label>
+                    <input type="radio" name="setor" value="manutencao"> Manutenção
+                </label>
+            </div>
+
+            <div class="campo">
+                <label>Selecione os equipamentos que utiliza:</label>
+                <label><input type="checkbox" name="tecnologia[]" value="MiniPc"> MiniPc</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="Impressora"> Impressora</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="Scanner"> Scanner</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="PinPad"> PinPad</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="Roteador"> Roteador</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="Switch"> Switch</label><br>
+                <label><input type="checkbox" name="tecnologia[]" value="Subwoofer"> Subwoofer</label>
+            </div>
+
+            <div class="campo">
+                <label for="experiencia">Descreva sua rotina:</label>
+                <textarea rows="6" id="experiencia" name="experiencia" required></textarea>
+            </div>
+
+            <button class="botao" type="submit">Concluído</button>
+        </form>
+    </div>
+
+    <!-- Validação JavaScript -->
+    <script>
+        document.querySelector('form').onsubmit = function(event) {
+            let tecnologias = document.querySelectorAll('input[name="tecnologia[]"]:checked');
+            if (tecnologias.length === 0) {
+                alert('Por favor, selecione pelo menos uma tecnologia.');
+                event.preventDefault(); // Impede o envio do formulário
+            }
+        };
+    </script>
+</body>
+
+</html>
